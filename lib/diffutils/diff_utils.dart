@@ -4,7 +4,7 @@ import 'structs/matching_block.dart';
 // import 'structs/op_code.dart';
 
 class DiffUtils {
-  static List<EditOp> getEditOps(String s1, String s2) {
+  static List<EditOp> getEditOps(List<int> s1, List<int> s2) {
     var len1 = s1.length;
     var len2 = s2.length;
 
@@ -13,8 +13,8 @@ class DiffUtils {
 
     List<int> matrix;
 
-    var c1 = s1.runes.toList();
-    var c2 = s2.runes.toList();
+    var c1 = s1.toList();
+    var c2 = s2.toList();
 
     var p1 = 0;
     var p2 = 0;
@@ -190,7 +190,7 @@ class DiffUtils {
     return ops;
   }
 
-  static List<MatchingBlock> getMatchingBlocks(String s1, String s2) {
+  static List<MatchingBlock> getMatchingBlocks(List<int> s1, List<int> s2) {
     return _getMatchingBlocks(s1.length, s2.length, getEditOps(s1, s2));
   }
 
@@ -581,11 +581,11 @@ class DiffUtils {
   //   return opCodes;
   // }
 
-  static int levEditDistance(String s1, String s2, int xcost) {
+  static int levEditDistance(List<int> s1, List<int> s2, int xcost) {
     int i;
     int half;
-    var c1 = s1.runes.toList();
-    var c2 = s2.runes.toList();
+    var c1 = s1.toList();
+    var c2 = s2.toList();
     var str1 = 0;
     var str2 = 0;
     var len1 = s1.length;
@@ -723,7 +723,7 @@ class DiffUtils {
     return 0;
   }
 
-  static double getRatio(String s1, String s2) {
+  static double getRatio(List<int> s1, List<int> s2) {
     var len1 = s1.length;
     var len2 = s2.length;
 

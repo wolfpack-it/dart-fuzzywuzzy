@@ -6,15 +6,15 @@ import 'dart:math';
 class PartialRatio implements Applicable {
   @override
   int apply(String s1, String s2) {
-    String shorter;
-    String longer;
+    List<int> shorter;
+    List<int> longer;
 
     if (s1.length < s2.length) {
-      shorter = s1;
-      longer = s2;
+      shorter = s1.runes.toList();
+      longer = s2.runes.toList();
     } else {
-      shorter = s2;
-      longer = s1;
+      shorter = s2.runes.toList();
+      longer = s1.runes.toList();
     }
 
     var matchingBlocks = DiffUtils.getMatchingBlocks(shorter, longer);
@@ -29,7 +29,7 @@ class PartialRatio implements Applicable {
 
       if (longEnd > longer.length) longEnd = longer.length;
 
-      var longSubstr = longer.substring(longStart, longEnd);
+      var longSubstr = longer.sublist(longStart, longEnd);
 
       var ratio = DiffUtils.getRatio(shorter, longSubstr);
 
